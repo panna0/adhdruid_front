@@ -1,0 +1,96 @@
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: $spacing-xl $spacing-md;
+  background-color: $color-background;
+  overflow: hidden;
+
+  @include respond-down($breakpoint-md) {
+    padding: $spacing-lg $spacing-md;
+  }
+
+  @include respond-down($breakpoint-sm) {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+.inner {
+  width: 100%;
+  max-width: $max-content-width;
+}
+
+.title {
+  margin-bottom: $spacing-lg;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.content {
+  color: rgba($color-text, 0.9);
+}
+
+.sectionGallery {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: $spacing-xl 0 0;
+  overflow: hidden;
+
+  @include respond-down($breakpoint-sm) {
+    padding-top: $spacing-lg;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    min-height: calc(100dvh - #{$spacing-xl});
+    margin: 0;
+
+    @include respond-down($breakpoint-md) {
+      min-height: auto;
+    }
+
+    @include respond-down($breakpoint-sm) {
+      min-height: auto;
+    }
+  }
+
+  .title {
+    flex-shrink: 0;
+    padding-inline: $spacing-md;
+    text-align: center;
+
+    @include respond-down($breakpoint-sm) {
+      padding-inline: $spacing-sm;
+    }
+  }
+
+  .content {
+    flex: 1;
+    width: 100%;
+    min-height: clamp(16rem, 55dvh, 36rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include respond-down($breakpoint-md) {
+      min-height: auto;
+      padding-block: $spacing-md;
+    }
+  }
+}
+
+.placeholder {
+  max-width: 40rem;
+  padding: $spacing-md;
+  border: 1px dashed $color-stroke;
+  border-radius: $border-radius-md;
+  background-color: rgba($color-surface, 0.5);
+  color: rgba($color-text, 0.75);
+}

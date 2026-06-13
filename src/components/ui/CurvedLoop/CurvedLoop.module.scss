@@ -1,0 +1,27 @@
+.jacket {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.svg {
+  user-select: none;
+  width: 100%;
+  aspect-ratio: 1440 / 300;
+  overflow: visible;
+  display: block;
+}
+
+.text {
+  font-family: $font-heading;
+  font-size: 6rem;
+  fill: $color-text;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+}

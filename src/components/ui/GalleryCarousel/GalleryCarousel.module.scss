@@ -1,0 +1,67 @@
+.carousel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding-bottom: $spacing-sm;
+  --slide-width: min(78vw, 16rem);
+}
+
+.track {
+  display: flex;
+  gap: $spacing-md;
+  width: 100%;
+  padding-inline: calc((100% - var(--slide-width)) / 2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slide {
+  flex: 0 0 var(--slide-width);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.card {
+  max-width: none;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding-inline: $spacing-md;
+}
+
+.dot,
+.dotActive {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba($color-text, 0.3);
+  transition:
+    transform $transition-fast,
+    background-color $transition-fast;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.dotActive {
+  transform: scale(1.25);
+  background-color: $color-text;
+}

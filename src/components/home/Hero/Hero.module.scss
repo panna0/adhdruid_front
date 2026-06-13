@@ -1,0 +1,147 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: calc(#{$spacing-lg} + 4rem) $spacing-md $spacing-lg;
+  background-color: $color-background;
+  border-bottom: 1px solid $color-stroke;
+  overflow: hidden;
+
+  @include respond-down($breakpoint-sm) {
+    padding: calc(#{$spacing-md} + 3.5rem) $spacing-sm $spacing-md;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: $max-content-width;
+  padding: 0 $spacing-md;
+  text-align: center;
+}
+
+.description {
+  max-width: 36rem;
+  margin: 0 auto;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  color: rgba($color-text, 0.85);
+}
+
+.inner {
+  width: 100%;
+  max-width: $max-content-width;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: $spacing-sm;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba($color-text, 0.7);
+}
+
+.title {
+  margin-bottom: $spacing-md;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.subtitle {
+  max-width: 36rem;
+  margin: 0 auto;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  color: rgba($color-text, 0.85);
+}
+
+.particlesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* Non blocca i click */
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0; // Partono invisibili
+
+  // Lista di colori tenui tra cui scegliere
+  $colors: (
+    rgba(100, 255, 218, 0.9), // Ciano
+    rgba(186, 104, 200, 0.9), // Lilla
+    rgba(244, 143, 177, 0.9), // Rosa
+  );
+
+  @for $i from 1 through 40 {
+    &:nth-child(#{$i}) {
+      // 1. Scegli casualmente un colore dalla lista
+      $selected-color: nth($colors, random(length($colors)));
+      background-color: $selected-color;
+      
+      // 2. Dimensione e sfocatura (blur) per un effetto più morbido
+      $size: random(4) + 1px;
+      width: $size;
+      height: $size;
+      filter: blur(0.5px); // Un leggero blur
+
+      // 3. Posizione iniziale casuale (orizzontale su tutto lo schermo, 
+      //    verticale nella parte inferiore per fluttuare in alto)
+      left: random(100) * 1%;
+      top: random(40) + 60% ; // Partono dal 60% dello schermo fino in fondo
+
+      // 4. Durate e ritardi casuali per un movimento organico
+      $blink-duration: random(3) + 2s; // Tra 2s e 5s
+      $float-up-duration: random(25) + 15s; // Molto lento, tra 15s e 40s
+      $delay: random(10) * -1s; // Ritardo negativo per sfasarli
+
+      // 5. Applica le animazioni
+      animation: 
+        blink $blink-duration infinite alternate ease-in-out $delay,
+        float-up $float-up-duration infinite linear $delay;
+    }
+  }
+}
+
+// Keyframe per l'effetto lampeggio (uguale per tutti)
+@keyframes blink {
+  0% {
+    opacity: 0;
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+  }
+  50% {
+    opacity: random(3) * 0.1 + 0.3; // Opacità massima tra 0.4 e 0.6
+    // Il glow usa il colore di sfondo della particella per coerenza
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4); 
+  }
+  100% {
+    opacity: 0;
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+  }
+}
+
+// Keyframe unico per il movimento verso l'alto (float-up)
+@keyframes float-up {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  20% {
+    // Un po' di movimento orizzontale casuale (come un lieve vento)
+    transform: translateY(-20vh) translateX((random(20) - 10) + px);
+  }
+  50% {
+    transform: translateY(-50vh) translateX((random(40) - 20) + px);
+  }
+  80% {
+    transform: translateY(-80vh) translateX((random(20) - 10) + px);
+  }
+  100% {
+    // Arrivano in cima e spariscono
+    transform: translateY(-110vh) translateX((random(10) - 5) + px);
+  }
+}

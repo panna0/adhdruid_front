@@ -1,0 +1,244 @@
+.footer {
+  position: relative;
+  width: 100%;
+}
+
+.footerDesktop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(22rem, 52vw, 50rem);
+  background-image: url('/footer-01.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  @include respond-down($breakpoint-md) {
+    display: none;
+  }
+}
+
+.marqueeTrack {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin-top: clamp(5rem, 18vw, 10rem);
+  opacity: 0.5;
+}
+
+
+.inner {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  margin-top: auto;
+  padding: $spacing-md $spacing-md $spacing-lg;
+  text-align: center;
+}
+
+.ctaBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  max-width: 32rem;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: $color-background;
+}
+
+.subtitle {
+  font-family: $font-body;
+  font-size: clamp(1rem, 2.2vw, 1.125rem);
+  line-height: 1.6;
+  color: rgba($color-background, 0.82);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border: 2px solid $color-background;
+  border-radius: $border-radius-md;
+  font-family: $font-heading;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-background;
+  background-color: transparent;
+  transition:
+    background-color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    background-color: rgba($color-background, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-background;
+    outline-offset: 3px;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-md;
+  padding-top: $spacing-xs;
+  border-top: 1px solid rgba($color-background, 0.2);
+}
+
+.link {
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-sm;
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  color: rgba($color-background, 0.88);
+  transition:
+    color $transition-fast,
+    background-color $transition-fast;
+
+  &:hover {
+    color: $color-background;
+    background-color: rgba($color-background, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-background;
+    outline-offset: 2px;
+  }
+}
+
+.copyright {
+  font-family: $font-body;
+  font-size: 0.875rem;
+  color: rgba($color-background, 0.65);
+}
+
+.footerMobile {
+  display: none;
+  background-color: $color-surface;
+  border-top: 1px solid $color-stroke;
+
+  @include respond-down($breakpoint-md) {
+    display: block;
+  }
+}
+
+.classicInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding: $spacing-lg $spacing-md calc(#{$spacing-lg} + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+}
+
+.classicCtaBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  max-width: 24rem;
+}
+
+.classicTitle {
+  font-family: $font-heading;
+  font-size: clamp(1.5rem, 5vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: $color-text;
+}
+
+.classicSubtitle {
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba($color-text, 0.8);
+}
+
+.classicCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border: 1px solid $color-stroke;
+  border-radius: $border-radius-md;
+  font-family: $font-heading;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-text;
+  background-color: $color-primary;
+  transition:
+    background-color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    background-color: color-mix(in srgb, $color-primary 85%, white);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.classicNav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-md;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-stroke;
+}
+
+.classicLink {
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  color: rgba($color-text, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
+}
+
+.classicCopyright {
+  font-family: $font-body;
+  font-size: 0.8125rem;
+  color: rgba($color-text, 0.55);
+}

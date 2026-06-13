@@ -1,0 +1,36 @@
+// Design system — colori del progetto
+$color-background: #12102b;
+$color-surface: #1c1a3a;
+$color-stroke: #3a3866;
+$color-primary: #2e3a8a;
+$color-text: #b8c8f8;
+
+// Tipografia
+$font-body: var(--font-prociono), 'Prociono', serif;
+$font-heading: 'Sinistre', sans-serif;
+
+// Spaziature e layout
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2.5rem;
+$spacing-xl: 4rem;
+
+$max-content-width: 72rem;
+$border-radius-sm: 0.5rem;
+$border-radius-md: 0.75rem;
+$border-radius-lg: 1rem;
+
+// Transizioni
+$transition-fast: 150ms ease;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1280px;
+
+@mixin respond-down($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
