@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   useCallback,
@@ -510,15 +509,19 @@ export default function StaggeredMenu({
       <header className={styles.header} aria-label="Navigazione principale">
         <div className={styles.logo}>
           {logoUrl ? (
-            <Image
-              src={logoUrl}
-              alt={logoText}
-              className={styles.logoImg}
-              width={110}
-              height={32}
-              draggable={false}
-              priority
-            />
+            <Link
+              href="/"
+              className={styles.logoLink}
+              aria-label={logoText}
+              onClick={handleItemClick}
+            >
+              <span
+                className={styles.logoImg}
+                role="img"
+                aria-label={logoText}
+                style={{ '--logo-url': `url(${logoUrl})` } as CSSProperties}
+              />
+            </Link>
           ) : (
             <Link href="/" className={styles.logoText} onClick={handleItemClick}>
               {logoText}

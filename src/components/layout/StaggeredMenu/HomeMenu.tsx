@@ -8,6 +8,8 @@ export default function HomeMenu() {
     <StaggeredMenu
       isFixed
       position="right"
+      logoUrl="/logo.svg"
+      logoText="ADHDruid"
       items={homeMenuItems}
       colors={[...menuColors]}
       displaySocials={false}

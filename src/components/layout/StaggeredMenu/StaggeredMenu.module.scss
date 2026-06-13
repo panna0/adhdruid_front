@@ -73,11 +73,20 @@
   transition: color $transition-fast;
 }
 
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+}
+
 .logoImg {
   display: block;
+  width: 133px;
   height: 32px;
-  width: auto;
-  object-fit: contain;
+  // Il logo originale è scuro (#231f20): uso una mask per ricolorarlo
+  // con il colore dei testi del design system, mantenendo intatto l'SVG.
+  background-color: $color-text;
+  -webkit-mask: var(--logo-url) no-repeat center / contain;
+  mask: var(--logo-url) no-repeat center / contain;
 }
 
 .toggle {
