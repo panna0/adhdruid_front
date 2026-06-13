@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Contatta il team di supporto ADHDruid',
 };
 
-const SUPPORT_EMAIL = 'assistenza@adhdruid.it';
+const SUPPORT_EMAIL = 'help@adhdruid.it';
 
 export default function AssistenzaPage() {
   return (

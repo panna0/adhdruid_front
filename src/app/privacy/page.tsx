@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Footer from '@/components/layout/Footer/Footer';
 import styles from './privacy.module.scss';
 
-const PRIVACY_EMAIL = 'adhdruid.help@gmail.com';
+const PRIVACY_EMAIL = 'help@adhdruid.it';
 
 export const metadata: Metadata = {
   title: 'Privacy',
