@@ -1,5 +1,6 @@
 import Hero from '@/components/home/Hero/Hero';
 import Section from '@/components/home/Section/Section';
+import FeatureCards from '@/components/home/FeatureCards/FeatureCards';
 import HomeMenu from '@/components/layout/StaggeredMenu/HomeMenu';
 import Footer from '@/components/layout/Footer/Footer';
 import HomeGallery from '@/components/home/Section/HomeGallery';
@@ -12,7 +13,9 @@ export default function HomePage() {
       <HomeMenu />
       <main>
         <Hero />
-        <Section id="sezione-1" title="Collegamento ADHD e storia" />
+        <Section id="sezione-1" title="Collegamento ADHD e storia">
+          <FeatureCards />
+        </Section>
         <Section id="sezione-2" title="Compinente Fisica" />
         <Section id="sezione-3" title="Componente digitale" />
         <Section
