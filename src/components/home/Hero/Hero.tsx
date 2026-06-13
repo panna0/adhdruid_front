@@ -5,11 +5,7 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       {/* Container delle particelle */}
-      <div className={styles.particlesContainer}>
-        {particles.map((_, i) => (
-          <div key={i} className={styles.particle}></div>
-        ))}
-      </div>
+      
 
       {/* Il tuo contenuto principale */}
       <div className={styles.content}>
