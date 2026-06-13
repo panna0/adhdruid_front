@@ -2,6 +2,7 @@ import Hero from '@/components/home/Hero/Hero';
 import Section from '@/components/home/Section/Section';
 import HomeMenu from '@/components/layout/StaggeredMenu/HomeMenu';
 import Footer from '@/components/layout/Footer/Footer';
+import HomeGallery from '@/components/home/Section/HomeGallery';
 import sectionStyles from '@/components/home/Section/Section.module.scss';
 import styles from './page.module.scss';
 
