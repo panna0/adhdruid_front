@@ -47,18 +47,40 @@
   flex-direction: column;
   align-items: center;
   gap: $spacing-sm;
-  max-width: 32rem;
+  max-width: 38rem;
+  padding: $spacing-lg clamp($spacing-lg, 5vw, $spacing-xl);
+  border: 1px solid rgba($color-background, 0.18);
+  border-radius: $border-radius-lg;
+  background-color: rgba($color-background, 0.06);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 18px 50px rgba($color-background, 0.18);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3em 0.9em;
+  border: 1px solid rgba($color-background, 0.3);
+  border-radius: 999px;
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($color-background, 0.85);
 }
 
 .title {
   font-family: $font-heading;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.875rem, 4.2vw, 2.75rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
   color: $color-background;
 }
 
 .subtitle {
+  max-width: 28rem;
   font-family: $font-body;
   font-size: clamp(1rem, 2.2vw, 1.125rem);
   line-height: 1.6;
@@ -68,32 +90,46 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin-top: $spacing-xs;
+  gap: 0.6em;
+  margin-top: $spacing-sm;
   padding: $spacing-sm $spacing-lg;
   border: 2px solid $color-background;
-  border-radius: $border-radius-md;
+  border-radius: 999px;
   font-family: $font-heading;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: $color-background;
   background-color: transparent;
   transition:
     background-color $transition-fast,
-    transform $transition-fast;
+    color $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
 
   &:hover {
-    background-color: rgba($color-background, 0.1);
-    transform: translateY(-1px);
+    color: var(--footer-cta-hover-text, #f2f5ff);
+    background-color: $color-background;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba($color-background, 0.35);
   }
 
   &:active {
     transform: translateY(0);
+    box-shadow: 0 6px 16px rgba($color-background, 0.3);
   }
 
   &:focus-visible {
     outline: 2px solid $color-background;
-    outline-offset: 3px;
+    outline-offset: 4px;
+  }
+}
+
+.ctaIcon {
+  flex-shrink: 0;
+  transition: transform $transition-fast;
+
+  .cta:hover & {
+    transform: translateY(2px);
   }
 }
 
@@ -159,7 +195,25 @@
   flex-direction: column;
   align-items: center;
   gap: $spacing-sm;
-  max-width: 24rem;
+  max-width: 26rem;
+  padding: $spacing-lg $spacing-md;
+  border: 1px solid $color-stroke;
+  border-radius: $border-radius-lg;
+  background-color: rgba($color-background, 0.35);
+}
+
+.classicEyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3em 0.9em;
+  border: 1px solid $color-stroke;
+  border-radius: 999px;
+  font-family: $font-body;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($color-text, 0.7);
 }
 
 .classicTitle {
@@ -181,10 +235,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.6em;
   margin-top: $spacing-xs;
   padding: $spacing-sm $spacing-lg;
   border: 1px solid $color-stroke;
-  border-radius: $border-radius-md;
+  border-radius: 999px;
   font-family: $font-heading;
   font-size: 1rem;
   font-weight: 700;
