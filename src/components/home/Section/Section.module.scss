@@ -19,8 +19,12 @@
 }
 
 .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: $max-content-width;
+  text-align: center;
 }
 
 .title {
@@ -29,6 +33,7 @@
 }
 
 .content {
+  width: 100%;
   color: rgba($color-text, 0.9);
 }
 
