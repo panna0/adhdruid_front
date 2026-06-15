@@ -22,12 +22,15 @@ export default function Section({
     <section
       id={id}
       className={sectionClassName}
-      aria-labelledby={`${id}-title`}
+      aria-labelledby={title ? `${id}-title` : undefined}
+      aria-label={title ? undefined : id}
     >
       <div className={styles.inner}>
-        <h2 id={`${id}-title`} className={styles.title}>
-          {title}
-        </h2>
+        {title ? (
+          <h2 id={`${id}-title`} className={styles.title}>
+            {title}
+          </h2>
+        ) : null}
         {children ? (
           <div className={styles.content}>{children}</div>
         ) : (

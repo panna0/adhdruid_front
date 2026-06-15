@@ -43,6 +43,14 @@
   min-width: 0;
   padding: $spacing-xl 0 0;
   overflow: hidden;
+  background-image: url('/3secbg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @include respond-down($breakpoint-md) {
+    display: none;
+  }
 
   @include respond-down($breakpoint-sm) {
     padding-top: $spacing-lg;
@@ -86,8 +94,26 @@
 
     @include respond-down($breakpoint-md) {
       min-height: auto;
-      padding-block: $spacing-md;
+      padding-block: $spacing-xs;
     }
+  }
+}
+
+/* Sovrappone la sezione a quella precedente (es. ParallaxCards), così la
+   sezione precedente "sparisce" dietro a questa e non resta spazio vuoto.
+   Lo z-index più alto e lo sfondo pieno coprono il contenuto sottostante. */
+.overlapPrev {
+  position: relative;
+  z-index: 2;
+  margin-top: -100vh;
+
+  /* Su mobile la sezione 3 si sovrappone allo spazio di scroll lasciato
+     dalla sezione 2 (parallax), come su desktop. */
+  @include respond-down($breakpoint-md) {
+    margin-top: -60vh;
+    min-height: auto;
+    padding-block: $spacing-sm;
+    padding-inline: $spacing-md;
   }
 }
 
@@ -98,4 +124,14 @@
   border-radius: $border-radius-md;
   background-color: rgba($color-surface, 0.5);
   color: rgba($color-text, 0.75);
+}
+
+/* Sezione compatta su mobile: niente min-height a schermo intero,
+   contenuto orizzontale (carousel) che non occupa tutta l'altezza. */
+.sectionCompact {
+  @include respond-down($breakpoint-md) {
+    min-height: auto;
+    padding-block: $spacing-md;
+    padding-inline: $spacing-sm;
+  }
 }
