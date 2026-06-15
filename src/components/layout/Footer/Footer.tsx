@@ -3,7 +3,7 @@ import CurvedLoop from '@/components/ui/CurvedLoop/CurvedLoop';
 import styles from './Footer.module.scss';
 
 const MARQUEE_TEXT =
-  'ADHDruid · Il tuo spazio per organizzarti · Privacy · Assistenza · ';
+  'Il Circolo dei Druidi · Il Circolo dei Druidi';
 
 const FOOTER_TITLE = 'Parla di ADHDruid';
 const FOOTER_SUBTITLE =
