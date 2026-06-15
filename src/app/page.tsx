@@ -1,6 +1,9 @@
 import Hero from '@/components/home/Hero/Hero';
+import Intro from '@/components/home/Intro/Intro';
 import Section from '@/components/home/Section/Section';
-import FeatureCards from '@/components/home/FeatureCards/FeatureCards';
+import FlipCards from '@/components/home/FlipCards/FlipCards';
+import AppShowcase from '@/components/home/AppShowcase/AppShowcase';
+import ParallaxCards from '@/components/home/ParallaxCards/ParallaxCards';
 import HomeMenu from '@/components/layout/StaggeredMenu/HomeMenu';
 import Footer from '@/components/layout/Footer/Footer';
 import HomeGallery from '@/components/home/Section/HomeGallery';
@@ -13,14 +16,18 @@ export default function HomePage() {
       <HomeMenu />
       <main>
         <Hero />
-        <Section id="sezione-1" title="Collegamento ADHD e storia">
-          <FeatureCards />
+        <Intro />
+        <ParallaxCards />
+        <Section
+          id="sezione-3"
+          title=""
+          className={sectionStyles.overlapPrev}
+        >
+          <AppShowcase />
         </Section>
-        <Section id="sezione-2" title="Compinente Fisica" />
-        <Section id="sezione-3" title="Componente digitale" />
         <Section
           id="sezione-4"
-          title="Il Circolo dei Druidi"
+          title=""
           className={sectionStyles.sectionGallery}
         >
           <HomeGallery />
