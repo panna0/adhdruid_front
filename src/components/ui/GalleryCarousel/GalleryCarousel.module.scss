@@ -2,9 +2,14 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
-  padding-bottom: $spacing-sm;
-  --slide-width: min(78vw, 16rem);
+  gap: $spacing-lg;
+  padding-block: $spacing-md;
+  --slide-width: min(74vw, 17rem);
+
+  @include respond-down($breakpoint-md) {
+    gap: $spacing-sm;
+    padding-block: $spacing-xs;
+  }
 }
 
 .track {
@@ -27,12 +32,29 @@
   flex: 0 0 var(--slide-width);
   scroll-snap-align: center;
   scroll-snap-stop: always;
+  transition:
+    transform 350ms ease,
+    opacity 350ms ease;
+
+  &[aria-hidden='true'] {
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
 }
 
 .card {
   max-width: none;
   width: 100%;
   margin: 0 auto;
+}
+
+/* Su mobile manca l'hover: la card centrata (attiva) mostra di default il
+   bordo colorato col proprio themeColor, come se fosse in hover. */
+.slide:not([aria-hidden='true']) .card {
+  border-color: var(--theme-color, $color-text);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px var(--theme-color, transparent);
 }
 
 .dots {

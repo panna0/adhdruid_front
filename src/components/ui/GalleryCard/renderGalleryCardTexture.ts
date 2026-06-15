@@ -2,14 +2,13 @@ import type { GalleryCardItem } from './types';
 
 const CARD_WIDTH = 480;
 const CARD_HEIGHT = 720;
-const PADDING = 28;
-const IMAGE_HEIGHT_RATIO = 0.62;
-const BORDER_RADIUS = 24;
-const IMAGE_RADIUS = 16;
+const PADDING = 40;
+const BORDER_RADIUS = 28;
 
 type RenderOptions = {
   titleFont?: string;
   bodyFont?: string;
+  subtitleFont?: string;
 };
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -60,34 +59,41 @@ function drawImageCover(
   ctx.drawImage(img, sx, sy, sw, sh);
 }
 
-function wrapText(
+function splitLines(
   ctx: CanvasRenderingContext2D,
   text: string,
-  x: number,
-  y: number,
-  maxWidth: number,
-  lineHeight: number
-): number {
+  maxWidth: number
+): string[] {
   const words = text.split(' ');
+  const lines: string[] = [];
   let line = '';
-  let currentY = y;
 
   for (let i = 0; i < words.length; i++) {
     const testLine = line ? `${line} ${words[i]}` : words[i];
     if (ctx.measureText(testLine).width > maxWidth && line) {
-      ctx.fillText(line, x, currentY);
+      lines.push(line);
       line = words[i];
-      currentY += lineHeight;
     } else {
       line = testLine;
     }
   }
+  if (line) lines.push(line);
 
-  if (line) {
+  return lines;
+}
+
+function drawLines(
+  ctx: CanvasRenderingContext2D,
+  lines: string[],
+  x: number,
+  y: number,
+  lineHeight: number
+): number {
+  let currentY = y;
+  for (const line of lines) {
     ctx.fillText(line, x, currentY);
     currentY += lineHeight;
   }
-
   return currentY;
 }
 
@@ -101,39 +107,91 @@ export async function renderGalleryCardTexture(
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Could not get 2d context');
 
+  // Sfondo di base (blu molto scuro) in caso l'immagine non carichi.
   roundRect(ctx, 0, 0, CARD_WIDTH, CARD_HEIGHT, BORDER_RADIUS);
-  ctx.fillStyle = card.color;
-  ctx.fill();
+  ctx.save();
+  ctx.clip();
+  ctx.fillStyle = '#0a1128';
+  ctx.fillRect(0, 0, CARD_WIDTH, CARD_HEIGHT);
 
-  const imageX = PADDING;
-  const imageY = PADDING;
-  const imageWidth = CARD_WIDTH - PADDING * 2;
-  const imageHeight = (CARD_HEIGHT - PADDING * 2) * IMAGE_HEIGHT_RATIO;
-
+  // Immagine di sfondo a tutta card.
   try {
     const img = await loadImage(card.image);
-    roundRect(ctx, imageX, imageY, imageWidth, imageHeight, IMAGE_RADIUS);
-    ctx.save();
-    ctx.clip();
-    drawImageCover(ctx, img, imageX, imageY, imageWidth, imageHeight);
-    ctx.restore();
+    drawImageCover(ctx, img, 0, 0, CARD_WIDTH, CARD_HEIGHT);
   } catch {
-    roundRect(ctx, imageX, imageY, imageWidth, imageHeight, IMAGE_RADIUS);
-    ctx.fillStyle = 'rgba(18, 16, 43, 0.35)';
-    ctx.fill();
+    /* si mantiene lo sfondo di base */
   }
 
+  // Overlay sfumato: trasparente in alto, blu scuro in basso (~55%).
+  const overlay = ctx.createLinearGradient(0, 0, 0, CARD_HEIGHT);
+  overlay.addColorStop(0.35, 'rgba(10, 17, 40, 0)');
+  overlay.addColorStop(0.5, 'rgba(10, 17, 40, 0.35)');
+  overlay.addColorStop(0.72, 'rgba(10, 17, 40, 0.85)');
+  overlay.addColorStop(1, 'rgba(10, 17, 40, 1)');
+  ctx.fillStyle = overlay;
+  ctx.fillRect(0, 0, CARD_WIDTH, CARD_HEIGHT);
+  ctx.restore();
+
+  // ---- Testo allineato in basso ----
   const textX = PADDING;
   const textMaxWidth = CARD_WIDTH - PADDING * 2;
-  let textY = imageY + imageHeight + PADDING + 8;
 
-  ctx.fillStyle = '#b8c8f8';
-  ctx.font = options.titleFont || 'bold 32px Sinistre, sans-serif';
-  textY = wrapText(ctx, card.title, textX, textY, textMaxWidth, 36) + 8;
+  const subtitleLH = 24;
+  const titleLH = 42;
+  const descLH = 27;
+  const gapSubtitle = 12;
+  const gapTitle = 16;
 
-  ctx.fillStyle = 'rgba(184, 200, 248, 0.88)';
-  ctx.font = options.bodyFont || '18px Prociono, serif';
-  wrapText(ctx, card.description, textX, textY, textMaxWidth, 26);
+  const ctxLetter = ctx as CanvasRenderingContext2D & { letterSpacing?: string };
+  const previousLetterSpacing = ctxLetter.letterSpacing;
+
+  const subtitleFont = options.subtitleFont || '600 16px Prociono, serif';
+  const titleFont = options.titleFont || 'bold 36px Sinistre, sans-serif';
+  const bodyFont = options.bodyFont || '300 18px Prociono, serif';
+
+  ctx.font = subtitleFont;
+  const subtitleLines = splitLines(ctx, card.subtitle.toUpperCase(), textMaxWidth);
+  ctx.font = titleFont;
+  const titleLines = splitLines(ctx, card.title, textMaxWidth);
+  ctx.font = bodyFont;
+  const descLines = splitLines(ctx, card.description, textMaxWidth);
+
+  const blockHeight =
+    subtitleLines.length * subtitleLH +
+    gapSubtitle +
+    titleLines.length * titleLH +
+    gapTitle +
+    descLines.length * descLH;
+
+  let textY = CARD_HEIGHT - PADDING - blockHeight + subtitleLH * 0.75;
+
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+  ctx.font = subtitleFont;
+  try {
+    ctxLetter.letterSpacing = '2.5px';
+  } catch {
+    /* letterSpacing non supportato */
+  }
+  textY = drawLines(ctx, subtitleLines, textX, textY, subtitleLH) + gapSubtitle;
+  try {
+    ctxLetter.letterSpacing = previousLetterSpacing ?? '0px';
+  } catch {
+    /* noop */
+  }
+
+  ctx.fillStyle = card.themeColor;
+  ctx.font = titleFont;
+  textY = drawLines(ctx, titleLines, textX, textY, titleLH) + gapTitle;
+
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.82)';
+  ctx.font = bodyFont;
+  drawLines(ctx, descLines, textX, textY, descLH);
+
+  // Bordo esterno sottile e scuro.
+  roundRect(ctx, 0.75, 0.75, CARD_WIDTH - 1.5, CARD_HEIGHT - 1.5, BORDER_RADIUS);
+  ctx.strokeStyle = 'rgba(184, 200, 248, 0.12)';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
 
   return canvas;
 }

@@ -4,9 +4,10 @@ import styles from './GalleryCard.module.scss';
 
 export default function GalleryCard({
   title,
+  subtitle,
   description,
   image,
-  color,
+  themeColor,
   className,
   imageAlt = '',
 }: GalleryCardProps) {
@@ -15,12 +16,17 @@ export default function GalleryCard({
   return (
     <article
       className={cardClassName}
-      style={{ '--card-color': color } as CSSProperties}
+      style={{ '--theme-color': themeColor } as CSSProperties}
     >
-      <div className={styles.imageWrap}>
-        <img src={image} alt={imageAlt || title} className={styles.image} />
-      </div>
-      <div className={styles.body}>
+      <img
+        src={image}
+        alt={imageAlt || title}
+        className={styles.background}
+        aria-hidden={imageAlt ? undefined : true}
+      />
+      <div className={styles.overlay} />
+      <div className={styles.content}>
+        <span className={styles.subtitle}>{subtitle}</span>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
       </div>

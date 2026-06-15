@@ -476,21 +476,27 @@ class App {
     const defaultItems: GalleryCardItem[] = [
       {
         title: 'Organizza',
+        subtitle: 'Routine più semplice',
         description: 'Strumenti per semplificare la routine quotidiana.',
         image: 'https://picsum.photos/seed/g1/600/900',
         color: '#2e3a8a',
+        themeColor: '#63B3ED',
       },
       {
         title: 'Concentrati',
+        subtitle: 'Meno rumore',
         description: 'Riduci il rumore e trova focus.',
         image: 'https://picsum.photos/seed/g2/600/900',
         color: '#1c1a3a',
+        themeColor: '#B794F4',
       },
       {
         title: 'Pianifica',
+        subtitle: 'Obiettivi chiari',
         description: 'Visualizza obiettivi con chiarezza.',
         image: 'https://picsum.photos/seed/g3/600/900',
         color: '#3a3866',
+        themeColor: '#4FD1C5',
       },
     ];
     const galleryItems = items && items.length ? items : defaultItems;
