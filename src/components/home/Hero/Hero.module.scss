@@ -6,12 +6,17 @@
   min-height: 100vh;
   min-height: 100dvh;
   padding: calc(#{$spacing-lg} + 4rem) $spacing-md $spacing-xl;
-  background-color: $color-background;
+  background-image: url('/home_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid $color-stroke;
   overflow: hidden;
 
   @include respond-down($breakpoint-sm) {
     padding: calc(#{$spacing-md} + 3.5rem) $spacing-sm $spacing-lg;
+    background-image: url('/home_bg_mobile.png');
+    align-items: flex-start;
   }
 }
 
@@ -21,6 +26,9 @@
   max-width: $max-content-width;
   padding: 0 $spacing-md;
   text-align: center;
+  @include respond-down($breakpoint-sm) {
+    margin-top: 10vh;
+  }
 }
 
 .description {
