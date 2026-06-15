@@ -1,0 +1,58 @@
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: $spacing-xl $spacing-md;
+  background-color: $color-background;
+  overflow: hidden;
+
+  @include respond-down($breakpoint-md) {
+    min-height: 50dvh;
+    padding: $spacing-lg $spacing-md;
+  }
+
+  @include respond-down($breakpoint-sm) {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+.headline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 64rem;
+  margin: 0 auto;
+  font-family: $font-heading;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  text-wrap: balance;
+  color: $color-text;
+
+  @include respond-down($breakpoint-md) {
+    max-width: 92vw;
+    font-size: clamp(1.625rem, 5.5vw, 2.25rem);
+    line-height: 1.15;
+  }
+}
+
+/* Maschera: nasconde la parola finché non risale dal basso. */
+.wordMask {
+  display: inline-flex;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-right: 0.28em;
+
+  @include respond-down($breakpoint-md) {
+    margin-right: 0.22em;
+  }
+}
+
+.word {
+  display: inline-block;
+  will-change: transform;
+}
