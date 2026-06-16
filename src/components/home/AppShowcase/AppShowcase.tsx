@@ -27,8 +27,8 @@ const APP_SCREENSHOTS: string[] = [
 ];
 
 // 👉 Link agli store: sostituisci con gli URL reali delle tue schede.
-const APP_STORE_URL = '#'; // es. 'https://apps.apple.com/app/idXXXXXXXX'
-const GOOGLE_PLAY_URL = '#'; // es. 'https://play.google.com/store/apps/details?id=...'
+const APP_STORE_URL = 'https://play.google.com/store/apps/details?id=insalatacreativa.adhdruid&utm_source=emea_Med'; // es. 'https://apps.apple.com/app/idXXXXXXXX'
+const GOOGLE_PLAY_URL = 'https://apps.apple.com/it/app/adhdruid/id6778417743'; // es. 'https://play.google.com/store/apps/details?id=...'
 
 // Tempo (ms) tra uno scorrimento automatico e l'altro.
 const AUTOPLAY_INTERVAL = 3500;
