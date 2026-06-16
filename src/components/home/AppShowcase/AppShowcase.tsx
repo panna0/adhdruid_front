@@ -20,9 +20,10 @@ const APP_ICON_SRC: string | null = null;
 //    (es. '/screens/home.png'). Ogni stringa diventa una slide del carousel.
 //    Lascia l'array vuoto per usare i placeholder colorati.
 const APP_SCREENSHOTS: string[] = [
-  // '/screens/01.png',
-  // '/screens/02.png',
-  // '/screens/03.png',
+  '/Screenshot_20260616-090336.png',
+  '/Screenshot_20260616-090357.png',
+  '/Screenshot_20260616-090413.png',
+  '/Screenshot_20260616-090421.png',
 ];
 
 // 👉 Link agli store: sostituisci con gli URL reali delle tue schede.
@@ -88,12 +89,10 @@ export default function AppShowcase() {
           )}
         </span>
 
-        <h3 className={styles.title}>Porta {APP_NAME} sempre con te</h3>
+        <h3 className={styles.title}>Scarica L'App per Diventare Druido</h3>
 
         <p className={styles.paragraph}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Scarica {APP_NAME} e
-          trasforma ogni partita in un&apos;avventura sempre a portata di mano.
+        Vivere con l'ADHD significa lottare contro mille stimoli contemporaneamente. Ora tocca a te provare cosa si prova. Preparati a una sfida in cui il vero ostacolo non è la magia, ma la tua stessa attenzione. Scarica l'app per avventurarti nel rito di iniziazione e sperimenta sulla tua pelle il caos travolgente di ADHDruid. Riuscirai a mantenere il controllo?
         </p>
 
         <div className={styles.storeButtons}>
