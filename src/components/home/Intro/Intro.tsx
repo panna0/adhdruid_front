@@ -5,7 +5,7 @@ import styles from './Intro.module.scss';
 
 // 👉 Testo d'impatto: modifica qui la frase. Va a capo naturalmente su ~3 righe.
 const HEADLINE =
-  'Trasformiamo attenzione, energia ed emozioni in un’avventura da giocare insieme, una carta alla volta.';
+  'Il calderone bolle, il rito di iniziazione è iniziato e tu non hai preparato un bel nulla: implora l aiuto degli dei e sperimenta sulla tua pelle il caos travolgente di ADHDruid.';
 
 // Contenitore: orchestra l'apparizione progressiva delle parole (stagger).
 const containerVariants: Variants = {
