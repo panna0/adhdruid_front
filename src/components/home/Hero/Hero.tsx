@@ -9,10 +9,9 @@ export default function Hero() {
 
       {/* Il tuo contenuto principale */}
       <div className={styles.content}>
-        <h1 className={styles.title}>Il tuo spazio per organizzarti meglio</h1>
+        <h1 className={styles.title}>Niente Piani. Solo Caos e Magia.</h1>
         <p className={styles.description}>
-          Una landing page in costruzione. Qui troverai presto tutte le
-          informazioni sul progetto.
+        Sfida la tua concentrazione in un'avventura in cui il vero nemico da battere è la distrazione.
         </p>
       </div>
     </section>
